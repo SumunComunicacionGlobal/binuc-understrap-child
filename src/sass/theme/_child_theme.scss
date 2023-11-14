@@ -28,13 +28,25 @@
     z-index: 1;
 }
 
+
+#wrapper-navbar + .wrapper {
+    padding: 0;
+}
+
+#main > article > .entry-content > .wp-block-cover:first-child,
+#search-wrapper,
+#error-404-wrapper,
+#index-wrapper {
+    padding-top: 10rem !important;
+}
+
 #search-wrapper,
 #error-404-wrapper {
-    padding-top: 10rem;
-
+    
     .page-header {
         margin-bottom: $spacer * 2;
     }
+
 }
 
 .stretch-linked-block {
@@ -71,4 +83,10 @@
 .entry-footer {
     position: relative;
     z-index: 2;
+}
+
+.eocjs-newsticker {
+    text-transform: uppercase;
+    background-color: $black !important;
+    color: $white;
 }

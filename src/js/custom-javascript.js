@@ -40,141 +40,28 @@ jQuery(document).ready(function($) {
     $(this).parent().parent().toggleClass('show');
   });
 
+
+  $('.slick-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide ) {
+    $(this).closest('.slick-slider-wrapper').find('.slick-count-item').removeClass('slick-active');
+    $(this).closest('.slick-slider-wrapper').find('.slick-count-item[data-slide="' + nextSlide + '"]').addClass('slick-active');
+  });
+
+  $('.slick-count-item').bind('click', function(e) {
+    e.preventDefault();
+    $(this).closest('.slick-slider-wrapper').find('.slick-slider').slick('slickGoTo', $(this).attr('data-slide') );
+  });
+
 });
 
 
 /* Carruseles */
 
-// jQuery('.slick-slider').slick({
-//   dots: true,
-//   arrows: true,
-//   infinite: true,
-//   speed: 300,
-//   slidesToShow: 1,
-//   slidesToScroll: 1,
-//   autoplay: true
-// });
-
-// jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
-//   dots: false,
-//   arrows: true,
-//   infinite: true,
-//   speed: 300,
-//   slidesToShow: 4,
-//   slidesToScroll: 1,
-//   autoplay: true,
-//   responsive: [
-//     {
-//       breakpoint: 992,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 1
-//       }
-//     },
-//     {
-//       breakpoint: 576,
-//       settings: {
-//         slidesToShow: 2,
-//         slidesToScroll: 2
-//       }
-//     },
-//     {
-//       breakpoint: 480,
-//       settings: {
-//         slidesToShow: 1,
-//         slidesToScroll: 1
-//       }
-//     }
-//     // You can unslick at a given breakpoint now by adding:
-//     // settings: "unslick"
-//     // instead of a settings object
-//   ]
-// });
-
-// jQuery('.wp-block-group.is-layout-flex.is-style-slick-carousel-logos, .wp-block-group.is-style-slick-carousel-logos > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel-logos').slick({
-//   dots: true,
-//   arrows: true,
-//   infinite: true,
-//   speed: 300,
-//   slidesToShow: 6,
-//   slidesToScroll: 6,
-//   autoplay: false,
-//   responsive: [
-//     {
-//       breakpoint: 992,
-//       settings: {
-//         slidesToShow: 4,
-//         slidesToScroll: 4
-//       }
-//     },
-//     {
-//       breakpoint: 782,
-//       settings: {
-//         slidesToShow: 3,
-//         slidesToScroll: 3
-//       }
-//     },
-//     {
-//       breakpoint: 600,
-//       settings: {
-//         slidesToShow: 2,
-//         slidesToScroll: 2
-//       }
-//     }    // You can unslick at a given breakpoint now by adding:
-//     // settings: "unslick"
-//     // instead of a settings object
-//   ]
-// });
-
-
-// REPRODUCIR VÍDEO CUANDO LLEGAS A ÉL
-
-// (function($) {
-
-//   $(document).ready(function() { 
-  
-//     var $win = $(window);
-    
-//     var elementTop, elementBottom, viewportTop, viewportBottom;
-
-//     function isScrolledIntoView(elem) {
-//       elementTop = $(elem).offset().top;
-//       elementBottom = elementTop + $(elem).outerHeight();
-//       viewportTop = $win.scrollTop();
-//       viewportBottom = viewportTop + $win.height();
-
-//       return (elementBottom > viewportTop && elementTop + 300 < viewportBottom);
-//     }
-    
-//     if($('video').length){
-
-//       var loadVideo;
-
-//       $('video').each(function(){
-//         $(this).attr('webkit-playsinline', '');
-//         $(this).attr('playsinline', '');
-//         $(this).attr('muted', 'muted');
-
-//         $(this).attr('id','loadvideo');
-//         loadVideo = document.getElementById('loadvideo');
-//         loadVideo.load();
-//       });
-
-//       $win.scroll(function () { // video to play when is on viewport 
-      
-//         $('video').each(function(){
-//           if (isScrolledIntoView(this) == true && $(this)[0].currentTime < $(this)[0].duration ) {
-//               $(this)[0].play();
-//           } else {
-//               $(this)[0].pause();
-//           }
-//         });
-      
-//       });  // video to play when is on viewport
-
-//     } // end .field--name-field-video
-    
-    
-//    });
-  
-// })(jQuery);
+jQuery('.slick-carousel, .wp-block-group.is-style-slick-carousel > .wp-block-group__inner-container, .wp-block-gallery.is-style-slick-carousel').slick({
+  dots: true,
+  arrows: false,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false
+});

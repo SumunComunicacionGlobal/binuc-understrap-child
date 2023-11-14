@@ -9,8 +9,8 @@ if ( function_exists( 'register_block_style' ) ) {
     register_block_style(
         'core/cover',
         array(
-            'name'         => 'image-header',
-            'label'        => __( 'Cabecera', 'smn-admin' ),
+            'name'         => 'video-overflow-header',
+            'label'        => __( 'Video de cabecera', 'smn-admin' ),
             'is_default'   => false,
         )
     );
@@ -42,6 +42,24 @@ if ( function_exists( 'register_block_style' ) ) {
         )
     );
        
+    register_block_style(
+        'core/media-text',
+        array(
+            'name'         => 'media-text-card',
+            'label'        => __( 'Card', 'smn-admin' ),
+            'is_default'   => false,
+        )
+    );
+       
+    register_block_style(
+        'core/media-text',
+        array(
+            'name'         => 'image-overflow',
+            'label'        => __( 'Image overflow', 'smn-admin' ),
+            'is_default'   => false,
+        )
+    );
+       
     $display_text_block_types = array(
         'core/paragraph',
         'core/heading',
@@ -49,7 +67,7 @@ if ( function_exists( 'register_block_style' ) ) {
 
     foreach( $display_text_block_types as $block_type ) {
 
-        for ($i=1; $i <= 6; $i++) { 
+        for ($i=1; $i <= 3; $i++) { 
 
             register_block_style(
                 $block_type,
@@ -62,19 +80,28 @@ if ( function_exists( 'register_block_style' ) ) {
 
         }
             
-        for ($i=1; $i <= 4; $i++) { 
+        // for ($i=1; $i <= 4; $i++) { 
 
-            register_block_style(
-                $block_type,
-                array(
-                    'name'         => 'display-' . $i,
-                    'label'        => sprintf( __( 'Display %s', 'smn-admin' ), $i ),
-                    'is_default'   => false,
-                )
-            );
+        //     register_block_style(
+        //         $block_type,
+        //         array(
+        //             'name'         => 'display-' . $i,
+        //             'label'        => sprintf( __( 'Display %s', 'smn-admin' ), $i ),
+        //             'is_default'   => false,
+        //         )
+        //     );
 
-        }
-            
+        // }
+
+        register_block_style(
+            $block_type,
+            array(
+                'name'         => 'titulo-rotado',
+                'label'        => __( 'Rotado 90º izda', 'smn-admin' ),
+                'is_default'   => false,
+            )
+        );
+    
     }
 
     register_block_style(
@@ -157,6 +184,53 @@ function remove_is_style_prefix( $block_content, $block ) {
     return $block_content;
 }
 
+// add_filter( 'render_block', 'smn_carousel_right_image', 10, 2 );
+function smn_carousel_right_image( $block_content, $block ) {
+
+    if ( $block['blockName'] != 'core/group' ) return $block_content;
+    
+    if ( isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-bordered-carousel' ) ) {
+
+        // $carousel_image = '<p>test</p>';
+        $carousel_image = '<div><img class="carousel-right-image" src="'.get_stylesheet_directory_uri().'/img/carousel-img.svg" /></div>';
+       
+        // $block_content = '<div class="d-flex">'. $block_content . $carousel_image  . '</div>';
+        // $block_content = $block_content . $carousel_image;
+        $block_content = '<div class="row no-gutters"><div class="col-md-8">'.$block_content.'</div></div><div class="col-md-4">'.$carousel_image.'</div></div>';
+
+    } 
+    
+    return $block_content;
+}
+
+add_filter( 'render_block', 'smn_carousel_count', 10, 2 );
+function smn_carousel_count( $block_content, $block ) {
+
+    if ( $block['blockName'] != 'core/group' ) return $block_content;
+    
+    if ( isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-slick-carousel' ) ) {
+
+        $carousel_count = '<div class="slick-count">';
+
+        foreach ( $block['innerBlocks'] as $key => $inner_block ) {
+            $numero = str_pad($key+1, 2, '0', STR_PAD_LEFT) . '.';
+            $active_class = '';
+            if ( 0 == $key ) $active_class = 'slick-active';
+            $carousel_count .= '<a href="#" class="slick-count-item h4 ' . $active_class . '" data-slide="'. $key .'">' . $numero . '</a>';
+        }
+        
+        
+        $carousel_count .= '</div>';
+
+        $block_content = '<div class="slick-slider-wrapper">' . $carousel_count . $block_content . '</div>';
+
+    } 
+    
+    return $block_content;
+}
+
+
+
 // add_action('acf/init', 'smn_acf_blocks_init');
 // function smn_acf_blocks_init() {
 
@@ -184,14 +258,53 @@ function list_block_wrapper( $block_content, $block ) {
     if ( $block['blockName'] === 'core/list' ) {
         $block_content = str_replace( 
             array( '<ul class="', '<ol class="'), 
-            array( '<ul class="wp-block-list ', '<ol class="wp-block-list '), $block_content );
-        }
+            array( '<ul class="wp-block-list ', '<ol class="wp-block-list '), $block_content 
+        );
+        
         $block_content = str_replace( 
             array( '<ul>', '<ol>'), 
-            array( '<ul class="wp-block-list">', '<ol class="wp-block-list">'), $block_content );
+            array( '<ul class="wp-block-list">', '<ol class="wp-block-list">'), $block_content 
+        );
+
+    }
 
     return $block_content;
 }
+
+function agregar_preset_tamano_texto() {
+    add_theme_support('editor-font-sizes', array(
+        array(
+            'name' => __('Pequeño', 'smn-admin'),
+            'size' => 14,
+            'slug' => 'small'
+        ),
+        array(
+            'name' => __('Medio', 'smn-admin'),
+            'size' => 20,
+            'slug' => 'medium'
+        ),
+        array(
+            'name' => __('Grande (h2)', 'smn-admin'),
+            'size' => 28,
+            'slug' => 'large'
+        ),
+        array(
+            'name' => __('Extra grande (h1)', 'smn-admin'),
+            'size' => 34,
+            'slug' => 'x-large'
+        ),
+        array(
+            'name' => __('Enorme (display 1)', 'smn-admin'),
+            'size' => 48,
+            'slug' => 'xx-large'
+        )
+
+    ));
+}
+add_action('after_setup_theme', 'agregar_preset_tamano_texto');
+
+
+
 
 if( function_exists('acf_add_local_field_group') ):
 

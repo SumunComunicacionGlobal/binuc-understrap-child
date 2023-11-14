@@ -3,12 +3,25 @@
 }
 
 #wrapper-footer-full {
-	background-color: $light;
+	background-color: $black;
+	color: $white;
+	// background-color: transparent;
+	padding-bottom: 0;
+
+	a {
+		color: $white;
+	}
+
+	img[src*=".svg"],
+	.claim span:last-child:after,
+	.wp-block-buttons .wp-block-button.is-style-outline .wp-block-button__link:after {
+		filter: brightness(100);
+	}
 }
 
 #wrapper-footer {
-	padding: $spacer 0;
-	background-color: $dark;
+	padding-top: 0;
+	background-color: $black;
 	color: $white;
 	font-size: $font-size-sm;
 
@@ -20,4 +33,15 @@
 		text-align: center;
 	}
 
+}
+
+#legal-nav {
+
+	.nav-item {
+		border: $border-width solid;
+		flex-basis: 33.333333%;
+		margin-right: -$border-width;
+		margin-top: -$border-width;
+		text-align: center;
+	}
 }

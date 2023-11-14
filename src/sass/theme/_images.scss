@@ -10,6 +10,10 @@
 	font-size: $font-size-sm;
 }
 
+figure.wp-block-image img {
+	margin-bottom: 0;
+}
+
 .object-fit-cover {
 	object-fit: cover;
 }
@@ -25,4 +29,30 @@ a {
 			opacity: .7;
 		}
 	}
+}
+
+img.h-100 {
+	object-fit: cover;
+}
+
+.wp-post-image-wrapper,
+.wp-block-media-text.is-style-media-text-card .wp-block-media-text__media {
+	position: relative;
+	border: $border-width solid $white;
+}
+
+.wp-post-image-wrapper,
+.wp-block-media-text.is-style-media-text-card .wp-block-media-text__media {
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-image: url('../img/curva-blanca.svg');
+		background-size: cover;
+	}
+
 }

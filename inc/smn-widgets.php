@@ -88,6 +88,17 @@ function understrap_widgets_init() {
 
     register_sidebar(
         array(
+            'name'          => __( 'Pre footer para la Home y la ficha de Caso de Éxito', 'understrap' ),
+            'id'            => 'prefooter-home',
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</div><!-- .widget -->',
+            'before_title'  => '<p class="widget-title">',
+            'after_title'   => '</p>',
+        )
+    );
+
+    register_sidebar(
+        array(
             'name'          => __( 'Pre footer', 'understrap' ),
             'id'            => 'prefooter',
             'description'   => __( 'Aparece antes del Pie de Página Completo', 'understrap' ),
@@ -103,7 +114,7 @@ function understrap_widgets_init() {
 			'name'          => __( 'Footer Full', 'understrap' ),
 			'id'            => 'footerfull',
 			'description'   => __( 'Full sized footer widget with dynamic grid', 'understrap' ),
-			'before_widget' => '<div id="%1$s" class="footer-widget %2$s dynamic-classes">',
+			'before_widget' => '<div id="%1$s" class="footer-widget %2$s col-lg-4">',
 			'after_widget'  => '</div><!-- .footer-widget -->',
 			'before_title'  => '<p class="widget-title">',
 			'after_title'   => '</p>',

@@ -29,16 +29,17 @@ function smn_setup() {
 
 // add_filter( 'wp_trim_excerpt', 'understrap_all_excerpts_get_more_link' );
 function understrap_all_excerpts_get_more_link( $post_excerpt ) {
+
+    $pt = get_post_type();
+    $pto = get_post_type_object( $pt );
+
 	if ( ! is_admin() ) {
 		$post_excerpt = $post_excerpt . ' [...]';
-        // $post_excerpt .= '<p><a class="btn btn-secondary understrap-read-more-link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">' . __( 'Read More...', 'understrap' ) . '</a></p>';
-        $post_excerpt .= '<div class="wp-block-buttons">';
-            $post_excerpt .= '<div class="wp-block-button is-style-arrow-link">';
-                $post_excerpt .= '<a class="wp-block-button__link" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
-                    $post_excerpt .= __( 'Read More...', 'understrap' );
+        $post_excerpt .= '<p class="text-right mt-3">';
+                $post_excerpt .= '<a class="btn btn-outline-dark" href="' . esc_url( get_permalink( get_the_ID() ) ) . '">';
+                    $post_excerpt .= sprintf( __( 'Ver %s', 'understrap' ), $pto->labels->singular_name );
                 $post_excerpt .= '</a>';
-            $post_excerpt .= '</div>';
-        $post_excerpt .= '</div>';
+        $post_excerpt .= '</p>';
         }
 	return $post_excerpt;
 }

@@ -3,6 +3,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+em {
+    font-weight: 300;
+}
+
 .entry-meta {
     font-size: $font-size-sm;
     color: $gray-600;
@@ -13,11 +17,46 @@
 }
 
 .has-medium-font-size,
-.has-large-font-size, 
+.has-large-font-size {
+	line-height: $headings-line-height;
+    margin-bottom: 1em;
+}
+
+.has-xx-large-font-size, 
 .has-x-large-font-size, 
 .has-larger-font-size, 
 .has-huge-font-size {
-	line-height: $headings-line-height;
+	line-height: 1;
+    margin-bottom: 1em;
+}
+
+
+/* No funciona */
+// body {
+//     --wp--preset--font-size--x-large: $h1-font-size;
+//     --wp--preset--font-size--large: $h2-font-size;
+//     --wp--preset--font-size--medium: $lead-font-size;
+//     --wp--preset--font-size--small: $font-size-sm;
+// }
+
+.has-xx-large-font-size {
+    font-size: $display1-size !important;
+}
+
+.has-x-large-font-size {
+    font-size: $h1-font-size !important;
+}
+
+.has-large-font-size {
+    font-size: $h2-font-size !important;
+}
+
+.has-medium-font-size {
+    font-size: $lead-font-size;
+}
+
+.has-small-font-size {
+    font-size: $font-size-sm !important;
 }
 
 // ul.wp-block-list {
@@ -35,7 +74,7 @@
 // }
 
 h1, .h1 {
-
+    // font-weight: $font-weight-bold;
 }
 
 h2, .h2 {
@@ -47,7 +86,7 @@ h3, .h3 {
 }
 
 h4, .h4 {
-
+    font-weight: $font-weight-light;
 }
 
 h5, .h5 {
@@ -93,24 +132,22 @@ blockquote,
 
 @include media-breakpoint-up(lg) {
 
-    .display-1 {
-
+    h1, .h1,
+    .has-x-large-font-size {
+        font-size: $font-size-base * 3.5 !important;
     }
     
-    h1, .h1 {
-
-    }
-    
-    h2, .h2 {
-
+    h2, .h2,
+    .has-large-font-size {
+        font-size: $font-size-base * 2.125 !important;
     }
     
     h3, .h3 {
-
+        font-size: $font-size-base * 1.875;
     }
     
     h4, .h4 {
-
+        font-size: $font-size-base * 1.875;
     }
 
     h5, .h5 {
@@ -121,12 +158,9 @@ blockquote,
 
     }
 
-    .lead {
-        font-size: 1.5rem;
-    }
-
-    .display-1 {
-
+    .display-1,
+    .has-xx-large-font-size {
+        font-size: $font-size-base * 5 !important;
     }
     
     .display-2 {
@@ -145,7 +179,6 @@ blockquote,
 
 #search-wrapper,
 #error-404-wrapper {
-    padding-top: 10rem;
 
     h1.page-title {
         font-size: $font-size-base * 1.75;
@@ -153,5 +186,98 @@ blockquote,
 
     h2 {
         font-size: $font-size-base * 1.4;
+    }
+}
+
+.is-style-titulo-rotado,
+.is-style-titulo-rotado-derecha {
+    font-size: $font-size-sm;
+    display: inline-block;
+    width: max-content;
+
+    strong {
+
+        &:after {
+            content: "";
+            display: inline-block;
+            border-top: 1px solid;
+            width: 30px;
+            margin: 0 $spacer/2;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+
+    .is-style-titulo-rotado,
+    .is-style-titulo-rotado-derecha {
+        margin-bottom: 0 !important;
+
+        strong:after {
+            width: 100px;
+        }
+    }
+
+    .is-style-titulo-rotado {
+        position: absolute;
+        left: 0;
+        transform-origin: left bottom;
+        transform: rotate(-90deg) translateX(-100%);
+    }
+
+    // .is-style-titulo-rotado-derecha {
+    //     position: absolute;
+    //     left: 100%;
+    //     transform-origin: left top;
+    //     transform: rotate(-90deg) translateX(-100%);
+    // }
+
+}
+
+.claim {
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: .9;
+    font-weight: 300;
+    text-align: center;
+
+    span {
+        display: block;
+
+        &:last-child {
+            border: 1px solid;
+            padding: .15em calc(.5em + 40px) .15em .5em;
+            border-radius: 100px;
+            font-family: $font-family-base;
+            display: inline-block;
+            position: relative;
+            margin-top: .2em;
+
+            &:after {
+                content: "";
+                width: .5em;
+                height: .5em;
+                mask-image: url('../img/arrow-claim.svg');
+                mask-size: contain;
+                background-color: $body-color;
+                position: absolute;
+                display: block;
+                right: .5em;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        &:nth-child(3) {
+            margin-left: 1em;
+        }
+
+    }
+}
+
+.text-white {
+
+    .claim span:last-child:after {
+        background-color: $white;
     }
 }

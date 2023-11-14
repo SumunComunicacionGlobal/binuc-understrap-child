@@ -6,7 +6,42 @@
 }
 
 .footer-widget {
-    margin-bottom: $spacer;
+    border: $border-width solid;
+	margin-right: -$border-width;
+	margin-bottom: -$border-width/2;
+
+	* {
+		margin-bottom: 0 !important;
+	}
+
+	:where(.is-layout-flex) {
+		gap: 0;
+	}
+
+	.widget-title,
+	.wp-widget-group__inner-blocks {
+		padding: $spacer*.5 $spacer;
+		margin-bottom: 0;
+	}
+
+	.widget-title {
+		text-align: center;
+		font-weight: $font-weight-bold;
+		border-bottom: $border-width solid;
+	}
+
+	.wp-block-columns {
+		width: 100%;
+
+		.wp-block-column {
+			outline: $border-width/2 solid;
+		}
+	}
+
+	.w-100 > img {
+		width: 100%;
+	}
+
 }
 
 #wrapper-footer {
@@ -15,4 +50,10 @@
 	.footer-widget p {
 		margin-bottom: 0;
 	}
+}
+
+.footer-widget {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

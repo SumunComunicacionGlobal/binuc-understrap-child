@@ -1,6 +1,6 @@
 .breadcrumb {
     @extend .alignfull;
-    margin-bottom: $spacer * 3 !important;
+    // margin-bottom: $spacer * 3 !important;
 
     .breadcrumb-inner {
         @include make-container();
@@ -10,4 +10,10 @@
     p {
         margin-bottom: 0;
     }
+
+}
+
+.rank-math-breadcrumb a:first-child {
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
 }

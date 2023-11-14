@@ -295,3 +295,40 @@ function sumun_shortcode_casos_de_exito() {
 	return $r;
 }
 add_shortcode( 'casos_de_exito', 'sumun_shortcode_casos_de_exito' );
+
+function smn_ticker( $atts ) {
+    extract( shortcode_atts( array(
+        'text' => '',
+    ), $atts ) );
+
+    if ( !$text ) {
+        return;
+    }
+
+	wp_enqueue_style( 'ticker' );
+	wp_enqueue_script( 'ticker' );
+
+	$id = 'ticker-' . rand(1000,9999);
+
+	$r = '';
+
+	ob_start();
+	?>
+
+	<div id="<?php echo $id; ?>" class="ticker h3 alignfull invert-dark-mode"><?php echo $text; ?></div>
+
+	<script>
+
+		jQuery("#<?php echo $id; ?>").eocjsNewsticker({
+			speed: 20,
+			divider: '·'
+		});
+
+	</script>
+
+	<?php
+	$r .= ob_get_clean();
+	
+    return $r;
+}
+add_shortcode( 'ticker', 'smn_ticker' );

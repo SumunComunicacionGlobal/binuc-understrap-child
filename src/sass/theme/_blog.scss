@@ -1,0 +1,22 @@
+body.single #main {
+    
+    .wp-block-heading {
+        margin-top: $spacer*2;
+    }
+
+    p,
+    .wp-block-group,
+    .wp-block-columns {
+
+        &.has-background {
+            padding: $grid-gutter-width*.5;
+            margin-top: $grid-gutter-width;
+            margin-bottom: $grid-gutter-width;
+
+            *:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+

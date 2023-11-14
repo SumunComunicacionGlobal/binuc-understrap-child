@@ -21,21 +21,23 @@ if ( is_singular() ) {
 
 	<span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span>
 
-	<?php if ( $image_id ) echo wp_get_attachment_image( $image_id, 'large', false, array('class' => 'wp-block-cover__image-background') ); ?>
+	<?php // if ( $image_id ) echo wp_get_attachment_image( $image_id, 'large', false, array('class' => 'wp-block-cover__image-background') ); ?>
 
 	<div class="wp-block-cover__inner-container container">
 
+		<?php smn_breadcrumb(); ?>
+
+		<h1 class="entry-title"><?php echo $title; ?></h1>
+
 		<?php if ( is_singular( 'post' ) ) { ?>
 
-			<div class="entry-meta text-white">
+			<div class="entry-meta">
 
 				<?php understrap_posted_on(); ?>
 
 			</div><!-- .entry-meta -->
 
 		<?php } ?>
-
-		<h1 class="entry-title"><?php echo $title; ?></h1>
 
 		<?php if ( $description) { ?>
 			
@@ -46,6 +48,4 @@ if ( is_singular() ) {
 	</div>
 
 </header>
-
-<?php smn_breadcrumb(); ?>
 

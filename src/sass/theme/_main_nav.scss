@@ -10,6 +10,7 @@
 
 #main-nav {
     transition: $transition-base;
+    padding-top: 3rem;
 
     &.navbar-light {
 
@@ -27,6 +28,17 @@
         &.transparent {
             background-color: transparent;
         }
+    }
+
+    .nav-link {
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+    }
+
+    .dropdown-item {
+        text-transform: uppercase;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-bold;
     }
 
     @include media-breakpoint-down(md) {
@@ -73,9 +85,48 @@
 
 }
 
-body.navbar-transparent:not(.scrolled):not(.menu-open) {
-    
-    #main-nav {
-        background-color: transparent !important;
+body {
+
+    &.scrolled {
+
+        #main-nav {
+            background-color: rgba( $white, .96 );
+            border-bottom: $border-width solid $light;
+        }
     }
+
+    &.menu-open #main-nav {
+        background-color: $black;
+        color: $white;
+
+        a,
+        a:hover {
+            color: $white;
+        }
+
+        .navbar-animated-toggler .slot {
+            background-color: $white;
+        }
+
+        .logo-bg {
+            background-color: $white !important;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+}
+
+.logo-bg {
+    transition: $btn-transition;
+    width: 111px;
+    height: 35px;
+    display: block;
+    background-color: $black;
+    mask-image: url('../img/logo.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.navbar-dark .logo-bg {
+    background-color: $white;
 }

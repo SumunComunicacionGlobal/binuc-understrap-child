@@ -13,56 +13,46 @@ defined( 'ABSPATH' ) || exit;
 $container = get_theme_mod( 'understrap_container_type' );
 ?>
 
-<?php get_template_part( 'global-templates/blog' ); ?>
+<?php if( is_active_sidebar( 'prefooter-home' ) && ( is_front_page() || is_singular( 'caso-de-exito' ) ) ) { ?>
+
+	<div class="wrapper">
+	
+		<div class="container">
+		
+			<?php dynamic_sidebar( 'prefooter-home' ); ?>
+
+		</div>
+
+	</div>
+
+<?php } ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'prefooter' ); ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
 
-<div class="wrapper" id="wrapper-footer">
+<div class="wrapper invert-dark-mode" id="wrapper-footer">
 
 	<div class="<?php echo esc_attr( $container ); ?>">
 
-		<div class="row align-items-center">
+		<nav id="legal-nav" class="p-0 navbar navbar-expand-md" aria-labelledby="legal-nav-label">
 
-			<div class="col-md-6">
+			<p id="legal-nav-label" class="screen-reader-text">
+				<?php esc_html_e( 'Legal Navigation', 'understrap' ); ?>
+			</p>
 
-				<footer class="site-footer" id="colophon">
+			<?php wp_nav_menu( array(
+				'theme_location'		  => 'legal',
+				'container_class' => 'navbar-light w-100',
+				'container_id'    => 'navbarLegal',
+				'menu_class'      => 'navbar-nav mx-auto flex-wrap w-100',
+				'fallback_cb'     => '',
+				'menu_id'         => 'legal-menu',
+				'depth'           => 1,
+				'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
+			) ); ?>
 
-					<div class="site-info">
-
-						<?php understrap_site_info(); ?>
-
-					</div><!-- .site-info -->
-
-				</footer><!-- #colophon -->
-
-			</div><!--col end -->
-
-			<div class="col-md-6">
-
-				<nav id="legal-nav" class="navbar navbar-expand navbar-light" aria-labelledby="legal-nav-label">
-
-					<p id="legal-nav-label" class="screen-reader-text">
-						<?php esc_html_e( 'Legal Navigation', 'understrap' ); ?>
-					</p>
-
-					<?php wp_nav_menu( array(
-						'theme_location'		  => 'legal',
-						'container_class' => 'collapse navbar-collapse navbar-dark',
-						'container_id'    => 'navbarLegal',
-						'menu_class'      => 'navbar-nav mx-auto mr-md-0 flex-wrap justify-content-center justify-content-md-end',
-						'fallback_cb'     => '',
-						'menu_id'         => 'legal-menu',
-						'depth'           => 1,
-						'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
-					) ); ?>
-
-				</nav>
-
-			</div><!--col end -->
-
-		</div><!-- row end -->
+		</nav>
 
 	</div><!-- container end -->
 

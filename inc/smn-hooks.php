@@ -22,7 +22,9 @@ function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
    switch ($scanned_tag['type']) {
     case 'submit':
         $scanned_tag['options'][] = 'class:btn';
-        $scanned_tag['options'][] = 'class:btn-primary';
+        $scanned_tag['options'][] = 'class:btn-lg';
+        $scanned_tag['options'][] = 'class:btn-outline-primary';
+        $scanned_tag['options'][] = 'class:px-3';
         break;
     
     default:
@@ -33,7 +35,7 @@ function smn_wpcf7_form_control_class( $scanned_tag, $replace ) {
    return $scanned_tag;
 }
 
-add_action( 'loop_start', 'archive_loop_start', 10 );
+// add_action( 'loop_start', 'archive_loop_start', 10 );
 function archive_loop_start( $query ) {
 
     if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
@@ -43,7 +45,7 @@ function archive_loop_start( $query ) {
     }
 }
 
-add_action( 'loop_end', 'archive_loop_end', 10 );
+// add_action( 'loop_end', 'archive_loop_end', 10 );
 function archive_loop_end( $query ) {
 
     if ( isset( $query->query['ignore_row'] ) && $query->query['ignore_row'] ) return false;
@@ -69,8 +71,11 @@ function smn_body_classes( $classes ) {
 }
 
 
-add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
+// add_filter( 'post_class', 'bootstrap_post_class', 10, 3 );
 function bootstrap_post_class( $classes, $class, $post_id ) {
+
+    if ( 'post' != get_post_type() ) return $classes;
+
     if ( is_archive() || is_home() || is_search() || in_array( 'hfeed-post', $class ) ) {
         $classes[] = 'col-sm-6 col-lg-4 stretch-linked-block'; 
     }

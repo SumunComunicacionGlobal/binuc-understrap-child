@@ -15,7 +15,7 @@
         &:before {
             content: "+";
             font-size: 2rem;
-            line-height: 1;
+            line-height: .7;
             font-weight: $font-weight-light;
         }
     }
@@ -32,6 +32,7 @@
     }
 
     @include media-breakpoint-down(md) {
+        margin-bottom: $spacer * 4;
 
         .nav-link,
         .dropdown-item {

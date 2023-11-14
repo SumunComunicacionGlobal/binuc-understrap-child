@@ -9,23 +9,8 @@
 defined( 'ABSPATH' ) || exit;
 
 $container = get_theme_mod( 'understrap_container_type' );
-$navbar_class = 'bg-primary navbar-dark';
-
-if ( is_page() ) {
-	$navbar_bg = get_post_meta( get_the_ID(), 'navbar_bg', true );
-
-	switch ($navbar_bg) {
-		case 'navbar-light':
-			$navbar_class = 'bg-light navbar-light';
-			break;
-		
-		default:
-			$navbar_class = 'bg-primary navbar-dark';
-		break;
-	}
-} elseif( is_search() || is_404() ) {
-	$navbar_class = 'bg-primary navbar-dark';	
-}
+// $navbar_class = 'bg-primary navbar-dark';
+$navbar_class = 'navbar-light';
 ?>
 
 <nav id="main-nav" class="navbar navbar-expand-lg <?php echo $navbar_class; ?>" aria-labelledby="main-nav-label">
@@ -40,7 +25,7 @@ if ( is_page() ) {
 <?php endif; ?>
 
 		<!-- Your site title as branding in the menu -->
-		<?php if ( file_exists( get_stylesheet_directory() . '/img/logo-dark.svg' ) && file_exists( get_stylesheet_directory() . '/img/logo-light.svg' ) ) { ?>
+		<?php if ( file_exists( get_stylesheet_directory() . '/img/logo.svg' ) && file_exists( get_stylesheet_directory() . '/img/logo-light.svg' ) ) { ?>
 			
 			<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" itemprop="url">
 				<img class="logo-dark" src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo-smn-dark.svg" alt="<?php bloginfo( 'name' ); ?>" />
@@ -50,7 +35,7 @@ if ( is_page() ) {
 		<?php } elseif( file_exists( get_stylesheet_directory() . '/img/logo.svg' ) ) { ?>
 			
 			<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" itemprop="url">
-				<img class="logo-dark" src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.svg" alt="<?php bloginfo( 'name' ); ?>" />
+				<span class="logo-bg"></span>
 			</a>
 
 		<?php } elseif ( ! has_custom_logo() ) { ?>

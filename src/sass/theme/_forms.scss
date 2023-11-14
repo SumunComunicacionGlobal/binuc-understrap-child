@@ -52,21 +52,21 @@
       }
 
       input[type=submit] {
-        @extend .btn;
-        @extend .btn-dark;
-        color: $white;
-        transition: $transition-base;
+        //@extend .btn;
+        //@extend .btn-dark;
+        //color: $white;
+        //transition: $transition-base;
     
         &:disabled {
-            background-color: $dark;
-            color: $white;
+            //background-color: $dark;
+            //color: $white;
             opacity: .2;
         }
     
         &:hover {
-            background-color: $dark;
-            opacity: .8;
-            color: $white;
+            //background-color: $dark;
+            //opacity: .8;
+            //color: $white;
         }
       }    
 
@@ -134,6 +134,38 @@
     margin-right: 0;
     margin-left: -30px;
     top: 6px;
+  }
+
+}
+
+.field-group {
+  border: 1px solid;
+  padding: $spacer;
+  margin-bottom: $spacer;
+
+  p {
+    margin-bottom: 0 !important;
+    display: flex;
+  }
+
+  .form-control {
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-style: dashed;
+  }
+
+  label {
+    font-size: $font-size-base * 1.75;
+    flex-basis: 180px;
+  }
+
+  .wpcf7-form-control-wrap {
+    flex-grow: 1;
+  }
+
+  .wpcf7-not-valid-tip {
+    font-size: $font-size-base;
   }
 
 }

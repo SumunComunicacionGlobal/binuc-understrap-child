@@ -1,3 +1,54 @@
+.slick-track {
+	display: flex !important;
+}
+
+.slick-slide {
+	height: inherit !important;
+
+	&.wp-block-group.is-layout-constrained {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.slick-dotted.slick-slider {
+	margin-bottom: 60px;
+}
+
+.slick-dots {
+	bottom: -45px;
+
+	li {
+		width: unset;
+		height: unset;
+		margin: 0 8px;
+
+
+		button {
+			width: 1rem;
+			height: 1rem;
+			color: $body-color;
+			border: $border-width solid;
+			border-radius: 9999px;
+			background-color: transparent;
+			transition: $btn-transition;
+
+			&:before {
+				content: none;
+			}
+		}
+
+		&.slick-active,
+		&:hover {
+
+			button {
+				background-color: $body-color;
+			}
+		}
+	}
+
+}
+
 .slick-prev,
 .slick-next {
 	z-index: 1;
@@ -54,5 +105,75 @@
 		min-height: 560px;
 		align-items: flex-end;
 		padding: $spacer * 4 0;
+	}
+}
+
+.is-style-bordered-carousel {
+	position: relative;
+
+	.slick-slide {
+		border: $border-width solid;
+		min-height: 20rem;
+
+		> .wp-block-group__inner-container {
+			padding: $spacer * 2;
+		}
+
+		p {
+			margin-bottom: $paragraph-margin-bottom !important;
+		}
+
+	}
+
+	// .slick-list {
+		@include media-breakpoint-up(xl) {
+			margin-right: 20rem;
+
+			&:after {
+				content: "";
+				display: block;
+				position: absolute;
+				top: -1px;
+				bottom: -1px;
+				left: calc(100% - 1px);
+				width: 20rem;
+				top: 0;
+				bottom: 0;
+				// background-color: lightgray;
+				background-image: url('../img/carousel-img.svg');
+				background-repeat: no-repeat;
+				background-position: top right;
+				background-size: contain;
+			}
+		}
+	// }
+
+}
+
+.slick-count {
+	margin-bottom: $spacer * 2;
+	display: flex;
+	gap: $spacer;
+
+	.slick-count-item {
+		color: $body-color;
+		flex: 1;
+		border-bottom: $border-width solid;
+		transition: $transition-base;
+
+		&:not(.slick-active) {
+			opacity: .3;
+		}
+
+		&:hover {
+			color: $body-color;
+			text-decoration: none;
+			opacity: .7;
+		}
+
+		&.slick-active {
+			flex: 1 1 50%;
+		}
+
 	}
 }
