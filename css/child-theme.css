@@ -8714,7 +8714,7 @@ body.understrap-no-sidebar .alignwide {
   height: 1px;
   left: 0;
   right: 0;
-  bottom: 8rem;
+  bottom: 10vw;
   border-bottom: 1px solid #cdcdcd;
 }
 .wp-block-cover.is-style-video-overflow-header video.wp-block-cover__video-background {
